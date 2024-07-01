@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Signup() {
   const [name, setName] = useState();
@@ -37,11 +38,7 @@ function Signup() {
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-80">
       <div className="bg-white p-3 rounded w-25">
         <h2>Register</h2>
-        <form
-          onSubmit={handleSubmit}
-          class="row g-3 needs-validation"
-          novalidate
-        >
+        <form onSubmit={handleSubmit} className="row g-3 needs-validation">
           <div className="mb-2">
             <label htmlFor="email">
               <strong>Name</strong>

@@ -1,7 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Home() {
-  return <h2>Home</h2>;
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/getUsers")
+      .then((users) => {
+        setUsers(users.data);
+        console.log(users.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  return (
+    <div className="w-100 vh-100 d-flex justify-content-center align-items-center">
+      <div className="w-50">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Company</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => {
+              return (
+                <tr>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.company}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export default Home;
