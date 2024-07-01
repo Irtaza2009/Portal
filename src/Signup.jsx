@@ -9,10 +9,23 @@ function Signup() {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
+  const [company, setCompany] = useState();
+  const [country, setCountry] = useState();
+  const [city, setCity] = useState();
+  const [salary, setSalary] = useState();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/register", { name, email, password })
+      .post("http://localhost:3000/register", {
+        name,
+        email,
+        password,
+        company,
+        country,
+        city,
+        salary,
+      })
       .then((result) => {
         console.log(result);
         navigate("/login");
@@ -21,11 +34,15 @@ function Signup() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
+    <div className="d-flex justify-content-center align-items-center bg-secondary vh-80">
       <div className="bg-white p-3 rounded w-25">
         <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+        <form
+          onSubmit={handleSubmit}
+          class="row g-3 needs-validation"
+          novalidate
+        >
+          <div className="mb-2">
             <label htmlFor="email">
               <strong>Name</strong>
             </label>
@@ -36,9 +53,10 @@ function Signup() {
               name="email"
               className="form-control rounded-0"
               onChange={(e) => setName(e.target.value)}
+              required
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-1">
             <label htmlFor="email">
               <strong>Email</strong>
             </label>
@@ -49,9 +67,10 @@ function Signup() {
               name="email"
               className="form-control rounded-0"
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-1">
             <label htmlFor="email">
               <strong>Password</strong>
             </label>
@@ -61,7 +80,62 @@ function Signup() {
               name="password"
               className="form-control rounded-0"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
+          </div>
+          <div className="mb-1 d-flex justify-content-left">
+            <label>
+              <strong>What is your current company name?</strong>
+              <input
+                type="text"
+                placeholder="Enter Company Name"
+                autoComplete="off"
+                name="company"
+                className="form-control rounded-0"
+                onChange={(e) => setCompany(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className="mb-1 d-flex justify-content-left">
+            <label>
+              <strong>Which Country are you currently working in:</strong>
+              <input
+                type="text"
+                placeholder="Enter Country Name"
+                autoComplete="off"
+                name="country"
+                className="form-control rounded-0"
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className="mb-1 d-flex justify-content-left">
+            <label>
+              <strong>Which City are you currently residing in:</strong>
+              <input
+                type="text"
+                placeholder="Enter City Name"
+                autoComplete="off"
+                name="city"
+                className="form-control rounded-0"
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </label>
+          </div>
+
+          <div className="mb-1 d-flex justify-content-left">
+            <label>
+              <strong>What is your salary? (in Euros)</strong>
+
+              <input
+                type="text"
+                autoComplete="off"
+                name="salary"
+                className="form-control rounded-0"
+                placeholder="In Euros"
+                onChange={(e) => setSalary(e.target.value)}
+              />
+            </label>
           </div>
           <button type="submit" className="btn btn-success w-100 rounded-0">
             Register

@@ -4,7 +4,6 @@ import Signup from "./Signup.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login.jsx";
 import Home from "./Home.jsx";
-import Form from "./Form.jsx";
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/register" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/form" element={<Form />}></Route>
+
         <Route path="/home" element={<Home />}></Route>
       </Routes>
     </BrowserRouter>
